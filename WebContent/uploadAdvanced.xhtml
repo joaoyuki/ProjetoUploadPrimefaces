@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form enctype="multipart/form-data">
+	
+
+
+<p:outputLabel value="Upload de apenas um arquivo" ></p:outputLabel>
+		<p:fileUpload 
+			label="Procurar..."
+			value="#{fileUploadManagedBean.file}" 
+			fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+			mode="advanced"></p:fileUpload>
+		<p:separator />
+
+<p:separator />
+<p:outputLabel value="Upload multiplos arquivos arquivo" ></p:outputLabel>
+		<p:fileUpload 
+			label="Procurar..."
+			value="#{fileUploadManagedBean.file}" 
+			fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+			multiple="true"  
+			mode="advanced"></p:fileUpload>
+		<p:separator />
+
+<p:separator />
+<p:outputLabel value="Upload de apenas um arquivo de forma automática" ></p:outputLabel>
+		<p:fileUpload 
+			label="Procurar..."
+			value="#{fileUploadManagedBean.file}" 
+			fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+			auto="true" 
+			update="label" 
+			mode="advanced"></p:fileUpload>
+		<p:separator />
+		<p:outputLabel value="#{fileUploadManagedBean.teste}" id="label" ></p:outputLabel>
+		
+<p:separator />
+<p:outputLabel value="Restrição de tipo de arquivo para gif, jpg e png" ></p:outputLabel>
+		<p:fileUpload 
+			label="Procurar..."
+			value="#{fileUploadManagedBean.file}" 
+			fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+			auto="true"
+			allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+			mode="advanced">
+		</p:fileUpload>
+		<p:commandButton action="#{fileUploadManagedBean.abrirImagem}" update="campoImagem" value="Abrir imagem" onclick="PF('dlg2').show();" ></p:commandButton>
+
+		<p:separator />
+
+<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+     		<p:graphicImage id="campoImagem" style="width: 100px; height: 100px" value="#{fileUploadManagedBean.imagem}" />
+</p:dialog> 
+
+	</h:form>
+
+
+</h:body>
+
+
+</html>
