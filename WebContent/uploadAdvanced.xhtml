@@ -2,7 +2,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
@@ -54,6 +55,24 @@
 		<p:commandButton action="#{fileUploadManagedBean.abrirImagem}" update="campoImagem" value="Abrir imagem" onclick="PF('dlg2').show();" ></p:commandButton>
 
 		<p:separator />
+
+<p:outputLabel value="Upload de apenas um arquivo do formato PDF" ></p:outputLabel>
+		<p:fileUpload 
+			label="Procurar..."
+			value="#{fileUploadManagedBean.file}" 
+			fileUploadListener="#{basicDocumentViewerBean.fileUploadListener}" 
+			auto="true" 
+			allowTypes="/(\.|\/)(pdf)$/" 
+			mode="advanced">
+		</p:fileUpload>
+		<p:separator />
+		<p:commandButton action="#{basicDocumentViewerBean.abrirImagem}" update="campoPDF" value="Abrir PDF" onclick="PF('dlg3').show();" ></p:commandButton>		
+ 
+ 
+ <p:dialog header="Modal Dialog" widgetVar="dlg3" modal="true" height="500" width="500">
+	  		<pe:documentViewer id="campoPDF" height="500" value="#{basicDocumentViewerBean.content}" ></pe:documentViewer>
+</p:dialog> 
+ 		
 
 <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
      		<p:graphicImage id="campoImagem" style="width: 100px; height: 100px" value="#{fileUploadManagedBean.imagem}" />
