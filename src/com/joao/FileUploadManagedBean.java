@@ -54,31 +54,21 @@ public class FileUploadManagedBean {
 	}
 	
 	public void fileUploadListener(FileUploadEvent e){
-		// Get uploaded file from the FileUploadEvent
 		this.setTeste("File uploaded at: "+LocalDateTime.now());
 		this.file = e.getFile();
-		// Print out the information of the file
 		System.out.println("Uploaded File Name Is :: "+file.getFileName()+" :: Uploaded File Size :: "+file.getSize());
 	}
 	
     public StreamedContent abrirImagem(){
         
-        //if (selected != null &&  selected.getFoto() != null){
-            //InputStream stream = new ByteArrayInputStream(this.file);
             StreamedContent imagem = null;
 			try {
 				imagem = new DefaultStreamedContent(this.file.getInputstream());
 				setImagem(imagem);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             return imagem;
-        //} else {
-//            InputStream stream = new ByteArrayInputStream(new byte[1]);
-//            StreamedContent imagem = new DefaultStreamedContent();
-//            return imagem;
-        //}
         
     }	
 	

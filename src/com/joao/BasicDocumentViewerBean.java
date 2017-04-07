@@ -17,7 +17,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @ManagedBean  
 @SessionScoped  
@@ -52,23 +51,6 @@ public class BasicDocumentViewerBean implements Serializable{
     }  
   
     public StreamedContent getContent() {  
-//        try {  
-//            
-//            ByteArrayOutputStream out = new ByteArrayOutputStream();  
-//  
-//            Document document = new Document();  
-//            PdfWriter.getInstance(document, out);  
-//            document.open();  
-//  
-//            for (int i = 0; i < 50; i++) {  
-//                document.add(new Paragraph("All work and no play makes Jack a dull boy"));  
-//            }  
-//              
-//            document.close();  
-//            content = new DefaultStreamedContent(new ByteArrayInputStream(out.toByteArray()), "application/pdf");  
-//        } catch (Exception e) {  
-//            e.printStackTrace();  
-//        } 
         return content;  
     }  
   
@@ -81,20 +63,16 @@ public class BasicDocumentViewerBean implements Serializable{
             StreamedContent imagem = null;
 			try {
 				imagem = new DefaultStreamedContent(this.file.getInputstream());
-				//setImagem(imagem);
 				setContent(imagem);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             return imagem;
     }
     
 	public void fileUploadListener(FileUploadEvent e){
-		// Get uploaded file from the FileUploadEvent
 		
 		this.file = e.getFile();
-		// Print out the information of the file
 		System.out.println("Uploaded File Name Is :: "+file.getFileName()+" :: Uploaded File Size :: "+file.getSize());
 	}
 
